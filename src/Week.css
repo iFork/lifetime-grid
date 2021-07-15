@@ -1,0 +1,9 @@
+
+.week {
+  border: 1px solid gray;
+  background-color: lightgray;
+}
+
+.week--selected {
+  background-color: rosybrown;
+}
