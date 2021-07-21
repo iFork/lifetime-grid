@@ -17,7 +17,6 @@ function Week(props) {
       className={`week ${selectionState ? 'week--selected' : ''}`}
       onClick={handleClick}
     >
-      a week
     </div> 
   )
 }

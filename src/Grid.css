@@ -1,6 +1,29 @@
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: repeat(12, 1fr);
+  grid-template-columns: repeat(auto-fill, 2em);
+  /* grid-template-columns: repeat(52, 1fr); */
+  /* grid-template-rows: repeat(90, 1fr); */
+  justify-items: center;
+  gap: .3em;
+  perspective: 300px;
+}
+
+.grid > .week {
+  height: 2em;
+  width: 2em;
+  animation: flipin 1s linear;
+}
+
+@keyframes flipin {
+  0% {
+    transform: translateZ(-300px) rotateY(90deg);
+    backface-visibility: hidden;
+  }
+  60% {
+    transform: translateZ(-100px) rotateY(60deg);
+  }
+  100% {
+    transform: translateZ(0px) rotateY(0deg);
+  }
 }
