@@ -7,7 +7,7 @@ import './Grid.css';
 
 function Grid() {
 
-  const nodes = 4*12;
+  const nodes = 52*5;
 
   // NOTE: Array(num) creates a sparse array and map() ignores empty slots of
   // sparse array. Array.apply(aSparseArray) creates a non-sparse array to
@@ -15,6 +15,16 @@ function Grid() {
   // Array.apply(null, Array(num)).map(() => false)
 
   const weeksSelectionInitialStates = Array(nodes).fill(false);
+
+  // TODO: HOWTO? wrap / put lane markers
+  //
+  // GridRow length="" 
+  // GridRowTop length=""
+  // GridRowMarked rowNum={} OR GridRow marked="true"
+  // LaneMarkerX jump/step="5"
+  // LaneMarkerY jump/step="5"
+  // Week | Day | Month | Year
+  //
 
   const [ weeksSelection, setWeekSelection ] = useState(
     weeksSelectionInitialStates
