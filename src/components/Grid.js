@@ -8,6 +8,7 @@ import GridLaneMarker from './GridLaneMarker';
 function Grid() {
 
   const rowLength = 52;
+  const laneMarkerJump = 5;
   const nodes = rowLength*5;
 
   // NOTE: Array(num) creates a sparse array and map() ignores empty slots of
@@ -49,8 +50,17 @@ function Grid() {
       tabIndex={0}
     >
       {Array.apply(null, Array(rowLength)).map((_v, i) => 
-          <GridLaneMarker key={i} />
-      )}
+        {
+          const index = i +1;
+          return(
+            <GridLaneMarker
+              key={i} 
+              index={index}
+              show={index % laneMarkerJump === 0 ? true : false}
+            />
+          )
+        })
+      }
       {weeksSelection.map((ss, i) =>  
         <Week
           key={i}
