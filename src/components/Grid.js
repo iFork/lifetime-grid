@@ -3,11 +3,12 @@ import React, { useState } from 'react';
 import Week from './Week';
 
 import './Grid.css';
-
+import GridLaneMarker from './GridLaneMarker';
 
 function Grid() {
 
-  const nodes = 52*5;
+  const rowLength = 52;
+  const nodes = rowLength*5;
 
   // NOTE: Array(num) creates a sparse array and map() ignores empty slots of
   // sparse array. Array.apply(aSparseArray) creates a non-sparse array to
@@ -47,6 +48,9 @@ function Grid() {
       onKeyDown={handleKeyDown}
       tabIndex={0}
     >
+      {Array.apply(null, Array(rowLength)).map((_v, i) => 
+          <GridLaneMarker key={i} />
+      )}
       {weeksSelection.map((ss, i) =>  
         <Week
           key={i}

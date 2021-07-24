@@ -10,8 +10,7 @@
   perspective: 300px;
 }
 
-/* TODO: change .week to .grid-item */
-.grid > .week {
+.grid > .grid-item {
   height: 2em;
 
   animation: flipin 1s linear;

@@ -14,7 +14,9 @@ function Week(props) {
   }
   return (
     <div
-      className={`week ${selectionState ? 'week--selected' : ''}`}
+      className={`
+        grid-item
+        week ${selectionState ? 'week--selected' : ''}`}
       onClick={handleClick}
     >
     </div> 
