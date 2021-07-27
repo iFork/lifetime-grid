@@ -2,6 +2,7 @@
 .week {
   border: 1px solid gray;
   background-color: lightgray;
+  font-size: .5em;
 }
 
 .week--selected {

@@ -8,7 +8,7 @@ function Week(props) {
     // evt.target.classList.toggle('week--selected');
     setWeekSelection((prevState) => {
       return prevState.map(
-        (s, i) => i === index ? !selectionState : s
+        (s, i) => i + 1 === index ? !selectionState : s
       );
     })
   }
@@ -19,6 +19,7 @@ function Week(props) {
         week ${selectionState ? 'week--selected' : ''}`}
       onClick={handleClick}
     >
+      {index}
     </div> 
   )
 }
