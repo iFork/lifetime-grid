@@ -67,36 +67,23 @@ function Grid() {
       }
       {weeksSelection.map((ss, i) =>  
         {
-          // Fix 0-base 
           const index = i + 1;
-          const markerY = Math.ceil(index / resolutionX);
-          return index === 1 
-            ? <>
-                <GridLaneMarker
-                  key={index} 
-                  index={markerY}
-                  show="true"
-                />
-                <Week
-                  key={index}
-                  index={index}
-                  selectionState={ss}
-                  setWeekSelection={setWeekSelection} />
-                {/* show={markerY % laneMarkerJump === 0 ? true : false} */}
-            </>
-            : index % (resolutionX + 1 ) === 0
+          // FIXME: Refactor: markerY needs to be calculated every resolutionX-th step
+          // TODO: clean out/refactor offset Magic Numbers (1-s).
+          // Now index of 1st elem of each row is multiple of resolutionX,
+          // and index of 1st elem on 2nd row is = 52.
+          const markerY = Math.ceil(i / resolutionX) + 1;
+          return i % (resolutionX) === 0
             // brackets ?
             ? <>
               {/* FIXME coinciding keys, make KEYS unique ? */}
-              {/* FIXME: staggering due to step bigger by 1 than resolutionX */ }
-              {/* Note: cols increased by 1 in css grid template */}
                 <GridLaneMarker
-                  key={index} 
+                  key={i} 
                   index={markerY}
                   show="true"
                 />
                 <Week
-                  key={index}
+                  key={i}
                   index={index}
                   selectionState={ss}
                   setWeekSelection={setWeekSelection} />
