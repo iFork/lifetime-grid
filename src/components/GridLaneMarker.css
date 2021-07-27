@@ -2,6 +2,6 @@
 .grid-item--lane-marker--show {
   text-align: center;
   font-size: .8em;
-  line-height: 3em; /* to align text to the bottom */
+  line-height: 3rem; /* to align text to the bottom */
   align-self: end;
 }
