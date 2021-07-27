@@ -54,13 +54,13 @@ function Grid() {
     >
       {Array.apply(null, Array(rowLength)).map((_v, i) => 
         {
-          const index = i +1;
-          // FIXME: offset start by 1
           return(
             <GridLaneMarker
               key={i} 
-              index={index}
-              show={index % laneMarkerJump === 0 ? true : false}
+              index={i}
+              show={
+                i === 0 ? "" : i % laneMarkerJump === 0 ? true : false
+              }
             />
           )
         })
