@@ -4,32 +4,25 @@ import Week from './Week';
 
 import './Grid.css';
 import GridLaneMarker from './GridLaneMarker';
+import GridLaneMarkerRow from './GridLaneMarkerRow';
 
 function Grid() {
 
   const resolutionX = 52;
   // const resolutionFull = 
   const resolutionY = 6; // years
+  // number of columns allocated for markers for horizontal lanes, i.e.
+  // span of 1st (marker) column
   const laneXMarkerLength = 1;
+  // NOTE: Dependency: css should have the same rowLength in its
+  // grid-template-columns declaration
   const rowLength = laneXMarkerLength + resolutionX;
   const laneMarkerJump = 5;
-  // const nodes = rowLength*6;
   const resolutionFull = resolutionX * resolutionY;
 
 
-  // NOTE: Array(num) creates a sparse array and map() ignores empty slots of
-  // sparse array. Array.apply(aSparseArray) creates a non-sparse array to
-  // work with map().
-  // Array.apply(null, Array(num)).map(() => false)
-
   const weeksSelectionInitialStates = Array(resolutionFull).fill(false);
 
-  // TODO: HOWTO? wrap / put lane markers
-  //
-  // GridRow length="" 
-  // GridRowTop length=""
-  // Week | Day | Month | Year
-  //
 
   const [ weeksSelection, setWeekSelection ] = useState(
     weeksSelectionInitialStates
@@ -52,19 +45,10 @@ function Grid() {
       onKeyDown={handleKeyDown}
       tabIndex={0}
     >
-      {Array.apply(null, Array(rowLength)).map((_v, i) => 
-        {
-          return(
-            <GridLaneMarker
-              key={i} 
-              index={i}
-              show={
-                i === 0 ? "" : i % laneMarkerJump === 0 ? true : false
-              }
-            />
-          )
-        })
-      }
+      <GridLaneMarkerRow
+        rowLength={rowLength}
+        laneMarkerJump={laneMarkerJump} />
+      
       {weeksSelection.map((ss, i) =>  
         {
           const index = i + 1;
