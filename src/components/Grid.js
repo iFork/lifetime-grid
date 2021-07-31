@@ -66,21 +66,16 @@ function Grid() {
                   index={markerY}
                   show="true"
                 />
+                {/* show={markerY % laneMarkerJump === 0 ? true : false} */}
                 <Week
                   key={i}
-                  index={index}
-                  selectionState={w.selected}
+                  storedState={w}
                 />
-                  {/* TODO: dispatch in place of state setters */}
-                  {/* setWeekSelection={setWeekSelection}  */}
-                  {/* show={markerY % laneMarkerJump === 0 ? true : false} */}
             </>
             : <Week
                   key={index}
-                  index={index}
-                  selectionState={w.selected}
+                  storedState={w}
               />
-                  // setWeekSelection={setWeekSelection} 
 
         }
       )}

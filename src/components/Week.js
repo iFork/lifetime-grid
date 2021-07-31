@@ -1,25 +1,26 @@
+import { useDispatch } from 'react-redux';
+
+import { toggleSelection } from '../reducers/weeks';
+
 import './Week.css';
 
 
 function Week(props) {
-  const { index, selectionState, setWeekSelection } = props;
+  const { storedState } = props;
+  // const { index, selectionState, setWeekSelection } = props;
+  const dispatch = useDispatch();
 
   function handleClick(evt) {
-    // evt.target.classList.toggle('week--selected');
-    setWeekSelection((prevState) => {
-      return prevState.map(
-        (s, i) => i + 1 === index ? !selectionState : s
-      );
-    })
+    dispatch(toggleSelection(storedState.id));
   }
   return (
     <div
       className={`
         grid-item
-        week ${selectionState ? 'week--selected' : ''}`}
+        week ${storedState.selected ? 'week--selected' : ''}`}
       onClick={handleClick}
     >
-      {index}
+      {storedState.content}
     </div> 
   )
 }
