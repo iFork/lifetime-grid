@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
+// TODO: useDispatch too
+import { useSelector } from 'react-redux';
 
 import Week from './Week';
 
@@ -20,19 +22,17 @@ function Grid() {
   const laneMarkerJump = 5;
   const resolutionFull = resolutionX * resolutionY;
 
+  // TODO: consider multiple hooks - 1 for each field or 1 returning/creating an
+  // aggregate state object. Last approach may cause redundant re-renders.
+  const weeks = useSelector((rootState) => rootState.weeks);
 
-  const weeksSelectionInitialStates = Array(resolutionFull).fill(false);
-
-
-  const [ weeksSelection, setWeekSelection ] = useState(
-    weeksSelectionInitialStates
-  ); 
 
   function handleKeyDown(evt) {
     console.log(evt.key);
     switch (evt.key) {
       case 'Escape':
-        setWeekSelection(weeksSelectionInitialStates);
+        // setWeekSelection(weeksSelectionInitialStates);
+        // TODO: dispatch action
         break;
       default:
         break;
@@ -48,8 +48,8 @@ function Grid() {
       <GridLaneMarkerRow
         rowLength={rowLength}
         laneMarkerJump={laneMarkerJump} />
-      
-      {weeksSelection.map((ss, i) =>  
+
+      {weeks.map((w, i) => 
         {
           const index = i + 1;
           // FIXME: Refactor: markerY needs to be calculated every resolutionX-th step
@@ -69,15 +69,18 @@ function Grid() {
                 <Week
                   key={i}
                   index={index}
-                  selectionState={ss}
-                  setWeekSelection={setWeekSelection} />
-                {/* show={markerY % laneMarkerJump === 0 ? true : false} */}
+                  selectionState={w.selected}
+                />
+                  {/* TODO: dispatch in place of state setters */}
+                  {/* setWeekSelection={setWeekSelection}  */}
+                  {/* show={markerY % laneMarkerJump === 0 ? true : false} */}
             </>
             : <Week
                   key={index}
                   index={index}
-                  selectionState={ss}
-                  setWeekSelection={setWeekSelection} />
+                  selectionState={w.selected}
+              />
+                  // setWeekSelection={setWeekSelection} 
 
         }
       )}

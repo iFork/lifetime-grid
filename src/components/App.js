@@ -9,6 +9,7 @@ function App() {
         <p>Hello</p>
       </header>
       <main>
+        {/* TODO: cutomize grid view */}
         <Grid />
       </main>
     </div>
