@@ -11,6 +11,7 @@ import GridLaneMarkerRow from './GridLaneMarkerRow';
 
 function Grid() {
 
+  // TODO: move resolution states to store
   const resolutionX = 52;
   // const resolutionFull = 
   const resolutionY = 6; // years
@@ -22,13 +23,14 @@ function Grid() {
   const rowLength = laneXMarkerLength + resolutionX;
   const laneMarkerJump = 5;
   const resolutionFull = resolutionX * resolutionY;
+  // TODO: make css using resolution numbers in-line and using vars.
 
   // TODO: consider multiple hooks - 1 for each field or 1 returning/creating an
   // aggregate state object. Last approach may cause redundant re-renders.
   const weeks = useSelector((rootState) => rootState.weeks);
   const dispatch = useDispatch();
 
-
+  // Note: optimization opportunity - move out func passing dispatch as argument
   function handleKeyDown(evt) {
     console.log(evt.key);
     switch (evt.key) {
@@ -53,18 +55,16 @@ function Grid() {
       {weeks.map((w, i) => 
         {
           const index = i + 1;
-          // FIXME: Refactor: markerY needs to be calculated every resolutionX-th step
           // TODO: clean out/refactor offset Magic Numbers (1-s).
           // Now index of 1st elem of each row is multiple of resolutionX,
           // and index of 1st elem on 2nd row is = 52.
-          const markerY = Math.ceil(i / resolutionX) + 1;
           return i % (resolutionX) === 0
             // brackets ?
             ? <>
               {/* FIXME coinciding keys, make KEYS unique ? */}
                 <GridLaneMarker
                   key={i} 
-                  index={markerY}
+                  index={Math.ceil(i / resolutionX) + 1}
                   show="true"
                 />
                 {/* show={markerY % laneMarkerJump === 0 ? true : false} */}
