@@ -1,6 +1,7 @@
 import React from 'react';
-// TODO: useDispatch too
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { deselectAll } from '../reducers/weeks';
 
 import Week from './Week';
 
@@ -25,14 +26,14 @@ function Grid() {
   // TODO: consider multiple hooks - 1 for each field or 1 returning/creating an
   // aggregate state object. Last approach may cause redundant re-renders.
   const weeks = useSelector((rootState) => rootState.weeks);
+  const dispatch = useDispatch();
 
 
   function handleKeyDown(evt) {
     console.log(evt.key);
     switch (evt.key) {
       case 'Escape':
-        // setWeekSelection(weeksSelectionInitialStates);
-        // TODO: dispatch action
+        dispatch(deselectAll());
         break;
       default:
         break;

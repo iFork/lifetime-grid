@@ -18,10 +18,12 @@ const weeksInitialState = generateWeeks(52*7) ;
 console.log({ weeksInitialState });
 function weeksReducer(state = weeksInitialState, action) {
   switch (action.type) {
-    case 'week/toggleSelection':
+    case 'weeks/toggleSelection':
       return state.map((w) => {
         return w.id === action.payload ? { ...w, selected: !w.selected } : w
       })
+    case 'weeks/deselectAll':
+      return state.map((w) => { return { ...w, selected: false } })
     default:
       console.log({ defaultState: state });
       return state;
@@ -31,11 +33,20 @@ function weeksReducer(state = weeksInitialState, action) {
 // action creator
 function toggleSelection(weekId) {
   return {
-    type: 'week/toggleSelection',
+    type: 'weeks/toggleSelection',
     payload: weekId
   }
 }
 
+function deselectAll() {
+  return {
+    type: 'weeks/deselectAll'
+  }
+}
+
 export default weeksReducer;
-export { toggleSelection };
+export {
+  toggleSelection,
+  deselectAll,
+};
 
