@@ -14,7 +14,7 @@ function Grid() {
   // TODO: move resolution states to store
   const resolutionX = 52;
   // const resolutionFull = 
-  const resolutionY = 6; // years
+  const resolutionY = 2; // years
   // number of columns allocated for markers for horizontal lanes, i.e.
   // span of 1st (marker) column
   const laneXMarkerLength = 1;
@@ -54,27 +54,34 @@ function Grid() {
 
       {weeks.map((w, i) => 
         {
-          const index = i + 1;
+          // NOTE: need to put unique key on the top-most returned component.
+          // If wrapper <div key= > is used, `display:content` is needed
+          // as a workaround for a nested subgrid (grid - grandchild) problem. 
+          // Without workaround, nested subgrid does not line up with container
+          // grid lines.
+          // TODO: Alternatively, return <React.Fragment> (long form of `<>` tag)
+          // which can accept key prop.
+          //
           // TODO: clean out/refactor offset Magic Numbers (1-s).
           // Now index of 1st elem of each row is multiple of resolutionX,
           // and index of 1st elem on 2nd row is = 52.
           return i % (resolutionX) === 0
             // brackets ?
-            ? <>
-              {/* FIXME coinciding keys, make KEYS unique ? */}
+              ? <div
+                key={i} 
+                className="subgrid-wrapper"
+              >
                 <GridLaneMarker
-                  key={i} 
                   index={Math.ceil(i / resolutionX) + 1}
                   show="true"
                 />
                 {/* show={markerY % laneMarkerJump === 0 ? true : false} */}
                 <Week
-                  key={i}
                   storedState={w}
                 />
-            </>
+            </div>
             : <Week
-                  key={index}
+                  key={i}
                   storedState={w}
               />
 

@@ -13,7 +13,7 @@ function generateWeeks(num) {
   }) 
 }
 
-const weeksInitialState = generateWeeks(52*7) ;
+const weeksInitialState = generateWeeks(52*2) ;
 
 console.log({ weeksInitialState });
 function weeksReducer(state = weeksInitialState, action) {

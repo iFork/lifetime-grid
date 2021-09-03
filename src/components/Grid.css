@@ -10,7 +10,11 @@
   perspective: 300px;
 }
 
-.grid > .grid-item {
+.grid > .subgrid-wrapper {
+  display: contents;
+}
+
+.grid .grid-item {
   height: 2rem;
 
   animation: flipin 1s linear;
