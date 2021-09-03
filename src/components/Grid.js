@@ -54,22 +54,17 @@ function Grid() {
 
       {weeks.map((w, i) => 
         {
-          // NOTE: need to put unique key on the top-most returned component.
-          // If wrapper <div key= > is used, `display:content` is needed
-          // as a workaround for a nested subgrid (grid - grandchild) problem. 
-          // Without workaround, nested subgrid does not line up with container
-          // grid lines.
-          // TODO: Alternatively, return <React.Fragment> (long form of `<>` tag)
-          // which can accept key prop.
+          // NOTE: return <React.Fragment> (long form of `<>` tag)
+          // which can accept key prop and does not mess up with the grid
+          // structure.
           //
           // TODO: clean out/refactor offset Magic Numbers (1-s).
           // Now index of 1st elem of each row is multiple of resolutionX,
           // and index of 1st elem on 2nd row is = 52.
           return i % (resolutionX) === 0
             // brackets ?
-              ? <div
+              ? <React.Fragment
                 key={i} 
-                className="subgrid-wrapper"
               >
                 <GridLaneMarker
                   index={Math.ceil(i / resolutionX) + 1}
@@ -79,7 +74,7 @@ function Grid() {
                 <Week
                   storedState={w}
                 />
-            </div>
+            </React.Fragment>
             : <Week
                   key={i}
                   storedState={w}

@@ -10,10 +10,6 @@
   perspective: 300px;
 }
 
-.grid > .subgrid-wrapper {
-  display: contents;
-}
-
 .grid .grid-item {
   height: 2rem;
 
