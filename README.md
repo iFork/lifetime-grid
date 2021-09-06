@@ -1,4 +1,3 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Visualising a lifetime in a grid. Inspired by [Your Life in Weeks](https://waitbutwhy.com/2014/05/life-weeks.html).
 
