@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { deselectAll } from '../reducers/weeks';
+import { deselectAll } from '../reducers/weeksGrid';
 
 import Week from './Week';
 
@@ -11,10 +11,14 @@ import GridLaneMarkerRow from './GridLaneMarkerRow';
 
 function Grid() {
 
-  // TODO: move resolution states to store
-  const resolutionX = 52;
-  // const resolutionFull = 
-  const resolutionY = 2; // years
+  const { resolutionX } = useSelector(
+    (rootState) => rootState.weeksGrid.grid
+  );
+  // TODO: consider multiple hooks - 1 for each field or 1 returning/creating an
+  // aggregate state object. Last approach may cause redundant re-renders.
+  const weeks = useSelector((rootState) => rootState.weeksGrid.weeks);
+  const dispatch = useDispatch();
+
   // number of columns allocated for markers for horizontal lanes, i.e.
   // span of 1st (marker) column
   const laneXMarkerLength = 1;
@@ -22,13 +26,7 @@ function Grid() {
   // grid-template-columns declaration
   const rowLength = laneXMarkerLength + resolutionX;
   const laneMarkerJump = 5;
-  const resolutionFull = resolutionX * resolutionY;
   // TODO: make css using resolution numbers in-line and using vars.
-
-  // TODO: consider multiple hooks - 1 for each field or 1 returning/creating an
-  // aggregate state object. Last approach may cause redundant re-renders.
-  const weeks = useSelector((rootState) => rootState.weeks);
-  const dispatch = useDispatch();
 
   // Note: optimization opportunity - move out func passing dispatch as argument
   function handleKeyDown(evt) {

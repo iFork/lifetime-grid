@@ -1,10 +1,10 @@
 import { createStore, combineReducers } from 'redux';
 
-import weeksReducer from './reducers/weeks'
+import weeksGridReducer from './reducers/weeksGrid'
 
 
 const rootReducer = combineReducers({
-  weeks: weeksReducer
+  weeksGrid: weeksGridReducer
 })
 
 const store = createStore(

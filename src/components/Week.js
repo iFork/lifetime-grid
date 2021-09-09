@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 
-import { toggleSelection } from '../reducers/weeks';
+import { toggleSelection } from '../reducers/weeksGrid';
 
 import './Week.css';
 
