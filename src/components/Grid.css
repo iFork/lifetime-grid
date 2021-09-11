@@ -1,9 +1,6 @@
 
 .grid {
   display: grid;
-  /* grid-template-columns: repeat(auto-fill, 2em); */
-  grid-template-columns: repeat(53, minmax(1em, 1fr));
-  /* grid-template-rows: repeat(90, 1fr); */
   /* remove justify-items: center; to make background color to fill all item */
   /* justify-items: center; */
   gap: .3em;

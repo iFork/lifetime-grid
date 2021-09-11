@@ -22,11 +22,12 @@ function Grid() {
   // number of columns allocated for markers for horizontal lanes, i.e.
   // span of 1st (marker) column
   const laneXMarkerLength = 1;
-  // NOTE: Dependency: css should have the same rowLength in its
-  // grid-template-columns declaration
   const rowLength = laneXMarkerLength + resolutionX;
   const laneMarkerJump = 5;
-  // TODO: make css using resolution numbers in-line and using vars.
+
+  const style = {
+      'grid-template-columns': `repeat(${rowLength}, minmax(1em, 1fr))`,
+  }
 
   // Note: optimization opportunity - move out func passing dispatch as argument
   function handleKeyDown(evt) {
@@ -43,6 +44,7 @@ function Grid() {
   return (
     <div
       className="grid"
+      style={style}
       onKeyDown={handleKeyDown}
       tabIndex={0}
     >
